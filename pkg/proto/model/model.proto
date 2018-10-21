@@ -10,7 +10,6 @@ message Token {
 
 message Stat {
   uint64 id = 1 [ (gogoproto.jsontag) = "id" ];
-  string plain_text = 2 [ (gogoproto.jsontag) = "content" ];
-  string hash_data = 3 [ (gogoproto.jsontag) = "hash_data" ];
-  bool trusty = 4 [ (gogoproto.jsontag) = "trusty" ];
+  uint64 succeed = 2 [ (gogoproto.jsontag) = "succeed" ];
+  uint64 failed = 3 [ (gogoproto.jsontag) = "failed" ];
 }

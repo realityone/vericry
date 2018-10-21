@@ -19,8 +19,8 @@ type MySQL struct {
 	db *sql.DB
 }
 
-// New is
-func New() *MySQL {
+// NewMySQL is
+func NewMySQL() *MySQL {
 	db, err := sql.Open("mysql", config.MySQLDSN)
 	if err != nil {
 		panic(errors.WithStack(err))
@@ -43,7 +43,13 @@ func (m *MySQL) Token(ctx context.Context, id int64) (*model.Token, error) {
 
 // Stat is
 func (m *MySQL) Stat(ctx context.Context, id int64) (*model.Stat, error) {
-	return nil, nil
+	sql := `SELECT id,succeed,failed FROM stat WHERE id=?`
+	row := m.db.QueryRowContext(ctx, sql, id)
+	stat := &model.Stat{}
+	if err := row.Scan(&stat.Id, &stat.Succeed, &stat.Failed); err != nil {
+		return nil, errors.WithStack(err)
+	}
+	return stat, nil
 }
 
 // MinID is
