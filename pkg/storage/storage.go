@@ -1,16 +1,18 @@
 package storage
 
 import (
-	"github.com/realityone/vericry/pkg/proto/schema"
+	"context"
+
+	"github.com/realityone/vericry/pkg/proto/model"
 )
 
 // Storage is
 type Storage interface {
-	Token(id int64) (*schema.Token, error)
-	Stat(id int64) (*schema.Stat, error)
+	Token(ctx context.Context, id int64) (*model.Token, error)
+	Stat(ctx context.Context, id int64) (*model.Stat, error)
 
-	MinID() (int64, error)
-	MaxID() (int64, error)
+	MinID(ctx context.Context) (int64, error)
+	MaxID(ctx context.Context) (int64, error)
 
-	FromPlainText(plain string) (*schema.Token, error)
+	FromPlainText(ctx context.Context, plain string) (*model.Token, error)
 }

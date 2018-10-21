@@ -1,0 +1,16 @@
+syntax = "proto3";
+import "github.com/gogo/protobuf/gogoproto/gogo.proto";
+
+message Token {
+  uint64 id = 1 [ (gogoproto.jsontag) = "id" ];
+  string plain_text = 2 [ (gogoproto.jsontag) = "content" ];
+  string hash_data = 3 [ (gogoproto.jsontag) = "hash_data" ];
+  bool trusty = 4 [ (gogoproto.jsontag) = "trusty" ];
+}
+
+message Stat {
+  uint64 id = 1 [ (gogoproto.jsontag) = "id" ];
+  string plain_text = 2 [ (gogoproto.jsontag) = "content" ];
+  string hash_data = 3 [ (gogoproto.jsontag) = "hash_data" ];
+  bool trusty = 4 [ (gogoproto.jsontag) = "trusty" ];
+}
