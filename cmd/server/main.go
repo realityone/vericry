@@ -3,6 +3,8 @@ package main
 import (
 	"flag"
 	"net"
+	"math/rand"
+	"time"
 
 	"github.com/realityone/vericry/pkg/config"
 	"github.com/realityone/vericry/pkg/proto/api/v1"
@@ -15,6 +17,8 @@ import (
 )
 
 func main() {
+    rand.Seed(time.Now().UnixNano())
+
 	pflag.CommandLine.AddGoFlagSet(flag.CommandLine)
 	pflag.Parse()
 

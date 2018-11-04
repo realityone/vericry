@@ -11,7 +11,8 @@ message QuestionRequest { map<string, string> metadata = 1; }
 message ValidateRequest { map<string, string> answer = 1; }
 
 message TokenReply {
-  string plain_text = 1 [ (gogoproto.jsontag) = "content" ];
+  string plain_text = 1 [ (gogoproto.jsontag) = "plain_text" ];
+  string salt = 2 [ (gogoproto.jsontag) = "salt" ];
 }
 
 message QuestionReply {

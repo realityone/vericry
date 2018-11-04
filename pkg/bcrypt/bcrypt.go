@@ -184,6 +184,11 @@ func newFromHash(hashedSecret []byte) (*hashed, error) {
 	return p, nil
 }
 
+// NewFromHash is  reexported newFromHash
+func NewFromHash(hashedSecret []byte) (*hashed, error) {
+	return newFromHash(hashedSecret)
+}
+
 func bcrypt(password []byte, cost int, salt []byte) ([]byte, error) {
 	cipherData := make([]byte, len(magicCipherData))
 	copy(cipherData, magicCipherData)
@@ -290,6 +295,10 @@ func (p *hashed) decodeCost(sbytes []byte) (int, error) {
 
 func (p *hashed) String() string {
 	return fmt.Sprintf("&{hash: %#v, salt: %#v, cost: %d, major: %c, minor: %c}", string(p.hash), p.salt, p.cost, p.major, p.minor)
+}
+
+func (p *hashed) Salt() []byte {
+	return p.salt
 }
 
 func checkCost(cost int) error {

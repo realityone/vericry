@@ -33,3 +33,13 @@ func base64Decode(src []byte) ([]byte, error) {
 	}
 	return dst[:n], nil
 }
+
+// Base64Encode is
+func Base64Encode(src []byte) []byte {
+	return base64Encode(src)
+}
+
+// Base64Decode is
+func Base64Decode(src []byte) ([]byte, error) {
+	return base64Decode(src)
+}
