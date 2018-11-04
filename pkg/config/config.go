@@ -8,10 +8,12 @@ import (
 
 // config from environment
 var (
-	MySQLDSN string
+	MySQLDSN   string
+	ListenAddr string
 
 	envs = map[string]*string{
-		"VERICRY_MYSQL_DSN": &MySQLDSN,
+		"VERICRY_MYSQL_DSN":   &MySQLDSN,
+		"VERICRY_LISTEN_ADDR": &ListenAddr,
 	}
 )
 
@@ -24,5 +26,7 @@ func init() {
 // Logging all config
 func Logging() {
 	glog.V(4).Infof("Vericry config:")
-	glog.V(4).Infof("VERICRY_MYSQL_DSN: %s", MySQLDSN)
+	for k, v := range envs {
+		glog.V(4).Infof("%s: %s", k, *v)
+	}
 }

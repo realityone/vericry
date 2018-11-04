@@ -2,15 +2,20 @@ syntax = "proto3";
 
 import "github.com/gogo/protobuf/gogoproto/gogo.proto";
 
-service Vericry { rpc GetQuestion(QuestionRequest) returns (QuestionReply); }
+service Vericry {
+  rpc GetQuestion(QuestionRequest) returns (QuestionReply);
+  rpc Validate(ValidateRequest) returns (ValidateReply);
+}
 
-message QuestionRequest {}
+message QuestionRequest { map<string, string> metadata = 1; }
+message ValidateRequest { map<string, string> answer = 1; }
 
 message TokenReply {
-  uint64 id = 1 [ (gogoproto.jsontag) = "id" ];
-  string plain_text = 2 [ (gogoproto.jsontag) = "content" ];
+  string plain_text = 1 [ (gogoproto.jsontag) = "content" ];
 }
 
 message QuestionReply {
   repeated TokenReply tokens = 1 [ (gogoproto.jsontag) = "tokens" ];
 }
+
+message ValidateReply { bool valid = 1 [ (gogoproto.jsontag) = "valid" ]; }
